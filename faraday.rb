@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require "faraday"
-require "faraday/gzip"
-require "faraday/retry"
-require "pry-byebug"
+require 'faraday'
+require 'faraday/gzip'
+require 'faraday/retry'
+require 'pry-byebug'
 
 # API Responses: https://designer.mocky.io/
 # Faraday: https://github.com/lostisland/faraday-retry
@@ -17,12 +17,12 @@ RETRY_OPTIONS = {
 }.freeze
 
 HEADERS = {
-  "Accept" => "application/json",
-  "Content-Type" => "application/json",
-  "User-Agent" => "bigcommerce-api-ruby"
+  'Accept' => 'application/json',
+  'Content-Type' => 'application/json',
+  'User-Agent' => 'ruby'
 }.freeze
 
-BASE_URL = "https://run.mocky.io/"
+BASE_URL = 'https://run.mocky.io/'
 
 conn = Faraday.new(url: BASE_URL, ssl: {}) do |faraday|
   faraday.headers = HEADERS
@@ -40,9 +40,9 @@ begin
     puts "\n[\033[1;34m#{times}\033[0m] \033[1;31m#{"—" * (160 - (times.size + 7))}\033[0m"
     start_time = Time.now.utc
     response = case times
-               when 3 then conn.get("v3/450f5901-fc23-4bee-b36a-d117a17e58c9") # This response return 429 status
-               when 5 then conn.get("v3/f6713d28-4a02-4168-8b9e-fab6a0e1484c") # This response return 401 status
-               else conn.get("v3/a7da6dc2-1923-437e-8bd9-3930506c3052") # This response return 200 status
+               when 3 then conn.get('v3/450f5901-fc23-4bee-b36a-d117a17e58c9') # This response return 429 status
+               when 5 then conn.get('v3/f6713d28-4a02-4168-8b9e-fab6a0e1484c') # This response return 401 status
+               else conn.get('v3/a7da6dc2-1923-437e-8bd9-3930506c3052') # This response return 200 status
                end
 
     if response.success?
