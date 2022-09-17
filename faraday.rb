@@ -37,7 +37,7 @@ end
 
 begin
   (1..8).each do |times|
-    puts "\n[\033[1;34m#{times}\033[0m] \033[1;31m#{"—" * (160 - (times.size + 7))}\033[0m"
+    puts "\n[\033[1;34m#{times}\033[0m] \033[1;31m#{'—' * (160 - (times.size + 7))}\033[0m"
     start_time = Time.now.utc
     response = case times
                when 3 then conn.get('v3/450f5901-fc23-4bee-b36a-d117a17e58c9') # This response return 429 status
@@ -51,7 +51,7 @@ begin
       puts "(#{times}) Error: #{response.status} - #{response.body}"
     end
     total_time = Time.now.utc - start_time
-    puts "\n[\033;Total Elapsed Time:#{total_time}\033[0m] \033[1;31m#{"—" * (135 - (times.size + 7))}\033[0m"
+    puts "\n[\033;Total Elapsed Time:#{total_time}\033[0m] \033[1;31m#{'—' * (135 - (times.size + 7))}\033[0m"
   end
 rescue StandardError => e
   puts e.message
@@ -60,5 +60,5 @@ end
 # @return [void]
 def headline(msg)
   line_length = 70 - (msg.size + 3)
-  puts "\n[\033[1;34m#{msg}\033[0m] \033[1;31m#{"—" * line_length}\033[0m"
+  puts "\n[\033[1;34m#{msg}\033[0m] \033[1;31m#{'—' * line_length}\033[0m"
 end
